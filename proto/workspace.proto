@@ -1,0 +1,59 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+import "google/protobuf/empty.proto";
+import "external/validate.proto";
+import "proto/model.proto";
+
+service WorkspaceService {
+  rpc updateWorkspace(UpdateWorkspaceRequest) returns (UpdateWorkspaceResponse) {}
+  rpc workspaces(google.protobuf.Empty) returns (WorkspacesResponse) {}
+  rpc deleteWorkspace(DeleteWorkspaceRequest) returns (DeleteWorkspaceResponse) {}
+
+  rpc addUserToWorkspace(AddUserToWorkspaceRequest) returns (AddUserToWorkspaceResponse) {}
+  rpc removeUserFromWorkspace(RemoveUserFromWorkspaceRequest) returns (RemoveUserFromWorkspaceResponse) {}
+}
+
+message UpdateWorkspaceRequest {
+  int64 id = 1;
+  string name = 2;
+  string currencyCode = 3;
+  string icon = 4;
+}
+
+message UpdateWorkspaceResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message WorkspacesResponse {
+  repeated Workspace items = 1;
+}
+
+message DeleteWorkspaceRequest {
+  int64 id = 1;
+}
+
+message DeleteWorkspaceResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message AddUserToWorkspaceRequest {
+  WorkspaceAccess access = 1;
+}
+
+message AddUserToWorkspaceResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message RemoveUserFromWorkspaceRequest {
+  int64 userId = 1 [(buf.validate.field).int64.gt = 0];
+  int64 workspaceId = 2 [(buf.validate.field).int64.gt = 0];
+}
+
+message RemoveUserFromWorkspaceResponse {
+  bool success = 1;
+  string error = 2;
+}

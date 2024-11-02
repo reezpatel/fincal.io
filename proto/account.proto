@@ -1,0 +1,111 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+import "google/protobuf/empty.proto";
+import "proto/model.proto";
+
+service AccountService {
+  rpc DepositAccounts(google.protobuf.Empty) returns (DepositAccountsResponse) {}
+  rpc createDepositAccount(CreateDepositAccountRequest) returns (CreateDepositAccountResponse) {}
+  rpc deleteDepositAccount(DeleteDepositAccountRequest) returns (DeleteDepositAccountResponse) {}
+
+  rpc CreditCardAccounts(google.protobuf.Empty) returns (CreditCardAccountsResponse) {}
+  rpc createCreditCardAccount(CreateCreditCardAccountRequest) returns (CreateCreditCardAccountResponse) {}
+  rpc deleteCreditCardAccount(DeleteCreditCardAccountRequest) returns (DeleteCreditCardAccountResponse) {}
+
+  rpc SecurityAccounts(google.protobuf.Empty) returns (SecurityAccountsResponse) {}
+  rpc createSecurityAccount(CreateSecurityAccountRequest) returns (CreateSecurityAccountResponse) {}
+  rpc deleteSecurityAccount(DeleteSecurityAccountRequest) returns (DeleteSecurityAccountResponse) {}
+
+  rpc SecurityItems(google.protobuf.Empty) returns (SecurityItemsResponse) {}
+  rpc createSecurityItem(CreateSecurityItemRequest) returns (CreateSecurityItemResponse) {}
+  rpc deleteSecurityItem(DeleteSecurityItemRequest) returns (DeleteSecurityItemResponse) {}
+}
+
+message CreateDepositAccountRequest {
+  DepositAccount account = 1;
+}
+
+message CreateDepositAccountResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DepositAccountsResponse {
+  repeated DepositAccount accounts = 1;
+}
+
+message DeleteDepositAccountRequest {
+  int64 id = 1;
+}
+
+message DeleteDepositAccountResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message CreditCardAccountsResponse {
+  repeated CreditCardAccount accounts = 1;
+}
+
+message CreateCreditCardAccountRequest {
+  CreditCardAccount account = 1;
+}
+
+message CreateCreditCardAccountResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteCreditCardAccountRequest {
+  int64 id = 1;
+}
+
+message DeleteCreditCardAccountResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message SecurityAccountsResponse {
+  repeated SecurityAccount accounts = 1;
+}
+
+message CreateSecurityAccountRequest {
+  SecurityAccount account = 1;
+}
+
+message CreateSecurityAccountResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteSecurityAccountRequest {
+  int64 id = 1;
+}
+
+message DeleteSecurityAccountResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message SecurityItemsResponse {
+  repeated SecurityItem items = 1;
+}
+
+message CreateSecurityItemRequest {
+  SecurityItem item = 1;
+}
+
+message CreateSecurityItemResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteSecurityItemRequest {
+  int64 id = 1;
+}
+
+message DeleteSecurityItemResponse {
+  bool success = 1;
+  string error = 2;
+}

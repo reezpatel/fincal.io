@@ -1,0 +1,220 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+import "google/protobuf/timestamp.proto";
+import "external/validate.proto";
+
+message Currency {
+  string code = 1;
+  string symbol = 2;
+  double exchange_rate = 3;
+}
+
+message Market {
+  string id = 1;
+  string name = 2;
+  string currency_code = 3;
+}
+
+message Workspace {
+  int64 id = 1;
+  string name = 2;
+  string currency_code = 3;
+  string icon = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message Security {
+  string id = 1;
+  string market_id = 2;
+  string identifier = 3;
+  double value = 4;
+  string type = 5;
+}
+
+message User {
+  int64 id = 1;
+  string email = 3;
+  string icon = 4;
+  string name = 6;
+}
+
+message WorkspaceAccess {
+  int64 id = 1;
+  int64 workspace_id = 2 [(buf.validate.field).int64.gt = 0];
+  int64 user_id = 3 [(buf.validate.field).int64.gt = 0];
+  string role = 4;
+}
+
+message FileUpload {
+  string id = 1;
+  string path = 2;
+  string workspace_id = 3;
+  string name = 4;
+  string mime_type = 5;
+  string created_at = 6;
+  bool linked = 7;
+}
+
+message DepositAccount {
+  int64 id = 1;
+  int64 workspace_id = 2;
+  int64 user_id = 3;
+  string currency_code = 4;
+  double opening_balance = 5;
+  string name = 6;
+  string icon = 7;
+  string type = 8;
+  double balance = 9;
+  string created_at = 10;
+  string json = 11;
+}
+
+message CreditCardAccount {
+  string id = 1;
+  string user_id = 2;
+  string workspace_id = 3;
+  string currency_code = 4;
+  double balance = 5;
+  double credit_limit = 6;
+  double interest_rate = 7;
+}
+
+message SecurityAccount {
+  string id = 1;
+  string user_id = 2;
+  string workspace_id = 3;
+  string market_id = 4;
+  string name = 5;
+}
+
+message SecurityItem {
+  string id = 1;
+  string security_account_id = 2;
+  string security_id = 3;
+  int32 quantity = 4;
+}
+
+message Tag {
+  string id = 1;
+  string workspace_id = 2;
+  string name = 3;
+}
+
+message Category {
+  string id = 1;
+  string workspace_id = 2;
+  string name = 3;
+  string icon = 4;
+}
+
+message ExternalEntity {
+  string id = 1;
+  string workspace_id = 2;
+  string name = 3;
+  repeated string icon = 4;
+}
+
+message Asset {
+  string id = 1;
+  string workspace_id = 2;
+  string user_id = 3;
+  string name = 4;
+  string icon = 5;
+  double original_value = 6;
+  double current_value = 7;
+  string acquired_at = 8;
+}
+
+message Loan {
+  string id = 1;
+  string workspace_id = 2;
+  string user_id = 3;
+  string type = 4;
+  double interest_rate = 5;
+  int32 term_months = 6;
+  double loan_amount = 7;
+  double principal_amount = 8;
+  double loan_balance = 9;
+  double principal_balance = 10;
+  double monthly_installment = 11;
+  string start_date = 12;
+  string status = 13;
+}
+
+message Transaction {
+  string id = 1;
+  string workspace_id = 2;
+  string user_id = 3;
+  double amount = 4;
+  string from_id = 5;
+  string to_id = 6;
+  string source = 7;
+  string dest = 8;
+  string created_at = 9;
+  repeated string attachments = 10;
+  repeated string tag_ids = 11;
+  string category_id = 12;
+}
+
+message LoanRepayment {
+  string id = 1;
+  string workspace_id = 2;
+  string transaction_id = 3;
+  string user_id = 4;
+  double principal_paid = 5;
+  double interest_paid = 6;
+}
+
+message Goal {
+  string id = 1;
+  string workspace_id = 2;
+  string user_id = 3;
+  double amount = 4;
+  string icon = 5;
+  string target_date = 6;
+  string status = 7;
+  string deadline = 8;
+}
+
+message GoalDistribution {
+  string id = 1;
+  string source_id = 2;
+  string source_type = 3;
+  double quantity = 4;
+}
+
+message Envelope {
+  string id = 1;
+  string workspace_id = 2;
+  string user_id = 3;
+}
+
+message EnvelopeTemplate {
+  string id = 1;
+  string envelope_id = 2;
+  string category_id = 3;
+  double amount = 4;
+  bool active = 5;
+}
+
+message EnvelopeAllocation {
+  string id = 1;
+  int32 month_notation = 2;
+  string template_id = 3;
+  double amount = 4;
+  double utilized = 5;
+}
+
+message RecurringTransaction {
+  string id = 1;
+  string category_id = 2;
+  string user_id = 3;
+  double amount = 4;
+  string from_id = 5;
+  string to_id = 6;
+  string source = 7;
+  string dest = 8;
+  string frequency = 9;
+  string next_occurrence = 10;
+}

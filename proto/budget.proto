@@ -1,0 +1,86 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+import "google/protobuf/empty.proto";
+import "proto/model.proto";
+
+service BudgetService {
+  rpc Envelopes(google.protobuf.Empty) returns (EnvelopesResponse) {}
+  rpc createEnvelope(CreateEnvelopeRequest) returns (CreateEnvelopeResponse) {}
+  rpc deleteEnvelope(DeleteEnvelopeRequest) returns (DeleteEnvelopeResponse) {}
+
+  rpc EnvelopeTemplates(google.protobuf.Empty) returns (EnvelopeTemplatesResponse) {}
+  rpc createEnvelopeTemplate(CreateEnvelopeTemplateRequest) returns (CreateEnvelopeTemplateResponse) {}
+  rpc deleteEnvelopeTemplate(DeleteEnvelopeTemplateRequest) returns (DeleteEnvelopeTemplateResponse) {}
+
+  rpc EnvelopeAllocations(google.protobuf.Empty) returns (EnvelopeAllocationsResponse) {}
+  rpc createEnvelopeAllocation(CreateEnvelopeAllocationRequest) returns (CreateEnvelopeAllocationResponse) {}
+  rpc deleteEnvelopeAllocation(DeleteEnvelopeAllocationRequest) returns (DeleteEnvelopeAllocationResponse) {}
+
+}
+
+message EnvelopesResponse {
+  repeated Envelope envelopes = 1;
+}
+
+message CreateEnvelopeRequest {
+  Envelope envelope = 1;
+}
+
+message CreateEnvelopeResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteEnvelopeRequest {
+  int64 id = 1;
+}
+
+message DeleteEnvelopeResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message EnvelopeTemplatesResponse {
+  repeated EnvelopeTemplate templates = 1;
+}
+
+message CreateEnvelopeTemplateRequest {
+  EnvelopeTemplate template = 1;
+}
+
+message CreateEnvelopeTemplateResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteEnvelopeTemplateRequest {
+  int64 id = 1;
+}
+
+message DeleteEnvelopeTemplateResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message EnvelopeAllocationsResponse {
+  repeated EnvelopeAllocation allocations = 1;
+}
+
+message CreateEnvelopeAllocationRequest {
+  EnvelopeAllocation allocation = 1;
+}
+
+message CreateEnvelopeAllocationResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteEnvelopeAllocationRequest {
+  int64 id = 1;
+}
+
+message DeleteEnvelopeAllocationResponse {
+  bool success = 1;
+  string error = 2;
+}

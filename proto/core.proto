@@ -1,0 +1,104 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+import "google/protobuf/empty.proto";
+import "proto/model.proto";
+
+service CoreService {
+  rpc currencies (google.protobuf.Empty) returns (CurrenciesResponse) {}
+  rpc markets (google.protobuf.Empty) returns (MarketsResponse) {}
+
+  rpc createFileUploadUrl (google.protobuf.Empty) returns (CreateFileUploadUrlResponse) {}
+
+  rpc createTag(CreateTagRequest) returns (CreateTagResponse) {}
+  rpc deleteTag(DeleteTagRequest) returns (DeleteTagResponse) {}
+  rpc tags(google.protobuf.Empty) returns (TagsResponse) {}
+
+  rpc createCategory(CreateCategoryRequest) returns (CreateCategoryResponse) {}
+  rpc deleteCategory(DeleteCategoryRequest) returns (DeleteCategoryResponse) {}
+  rpc categories(google.protobuf.Empty) returns (CategoriesResponse) {}
+
+  rpc createExternalEntity(CreateExternalEntityRequest) returns (CreateExternalEntityResponse) {}
+  rpc deleteExternalEntity(DeleteExternalEntityRequest) returns (DeleteExternalEntityResponse) {}
+  rpc externalEntities(google.protobuf.Empty) returns (ExternalEntitiesResponse) {}
+}
+
+message CurrenciesResponse {
+  repeated Currency currencies = 1;
+}
+
+message MarketsResponse {
+  repeated Market markets = 1;
+}
+
+message CreateFileUploadUrlResponse {
+  bool success = 1;
+  string error = 2;
+  string path = 3;
+}
+
+message CreateTagRequest {
+  Tag tag = 1;
+}
+
+message CreateTagResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteTagRequest {
+  int64 id = 1;
+}
+
+message DeleteTagResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message TagsResponse {
+  repeated Tag tags = 1;
+}
+
+message CreateCategoryRequest {
+  Category category = 1;
+}
+
+message CreateCategoryResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteCategoryRequest {
+  int64 id = 1;
+}
+
+message DeleteCategoryResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message CategoriesResponse {
+  repeated Category categories = 1;
+}
+
+message CreateExternalEntityRequest {
+  ExternalEntity entity = 1;
+}
+
+message CreateExternalEntityResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteExternalEntityRequest {
+  int64 id = 1;
+}
+
+message DeleteExternalEntityResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message ExternalEntitiesResponse {
+  repeated ExternalEntity entities = 1;
+}

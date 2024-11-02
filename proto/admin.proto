@@ -1,0 +1,68 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+import "google/protobuf/empty.proto";
+import "proto/model.proto";
+import "google/protobuf/timestamp.proto";
+
+message ApiKey {
+  string id = 1;
+  google.protobuf.Timestamp  createdAt = 2;
+}
+
+service  AdminService {
+  rpc updateCurrency(UpdateCurrencyRequest) returns (UpdateCurrencyResponse) {}
+  rpc updateMarket(UpdateMarketRequest) returns (UpdateMarketResponse) {}
+  rpc serverInfo(google.protobuf.Empty) returns (ServerInfoResponse) {}
+
+  rpc apiKeys(google.protobuf.Empty) returns (ApiKeysResponse) {}
+  rpc createApiKey(CreateApiKeyRequest) returns (CreateApiKeyResponse) {}
+  rpc deleteApiKey(DeleteApiKeyRequest) returns (DeleteApiKeyResponse) {}
+}
+
+message  UpdateCurrencyRequest {
+  repeated Currency items = 1;
+}
+
+message UpdateCurrencyResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message UpdateMarketRequest{
+  repeated Market items = 1;
+}
+
+message UpdateMarketResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message ServerInfoResponse {
+  string version = 1;
+  string name = 2;
+  string imageBaseUrl = 3;
+}
+
+message ApiKeysResponse {
+  repeated ApiKey items = 1;
+}
+
+message CreateApiKeyRequest {
+  string id = 1;
+}
+
+message CreateApiKeyResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteApiKeyRequest {
+  string key = 1;
+}
+
+message DeleteApiKeyResponse {
+  bool success = 1;
+  string error = 2;
+}
+

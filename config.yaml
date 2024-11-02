@@ -1,0 +1,9 @@
+auth:
+  registration:
+    enabled: true
+  strategies:
+    - credentials
+    - google
+  google:
+    client_id: "xyz"
+    client_secret: "abc"

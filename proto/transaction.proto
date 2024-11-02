@@ -1,0 +1,59 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+import "google/protobuf/empty.proto";
+import "proto/model.proto";
+
+service TransactionService {
+    rpc Transactions(google.protobuf.Empty) returns (TransactionsResponse) {}
+    rpc createTransaction(CreateTransactionRequest) returns (CreateTransactionResponse) {}
+    rpc deleteTransaction(DeleteTransactionRequest) returns (DeleteTransactionResponse) {}
+
+    rpc RecurringTransactions(google.protobuf.Empty) returns (RecurringTransactionsResponse) {}
+    rpc createRecurringTransaction(CreateRecurringTransactionRequest) returns (CreateRecurringTransactionResponse) {}
+    rpc deleteRecurringTransaction(DeleteRecurringTransactionRequest) returns (DeleteRecurringTransactionResponse) {}
+}
+
+message TransactionsResponse {
+    repeated Transaction transactions = 1;
+}
+
+message CreateTransactionRequest {
+    Transaction transaction = 1;
+}
+
+message CreateTransactionResponse {
+    bool success = 1;
+    string error = 2;
+}
+
+message DeleteTransactionRequest {
+    int64 id = 1;
+}
+
+message DeleteTransactionResponse {
+    bool success = 1;
+    string error = 2;
+}
+
+message RecurringTransactionsResponse {
+    repeated RecurringTransaction transactions = 1;
+}
+
+message CreateRecurringTransactionRequest {
+    RecurringTransaction transaction = 1;
+}
+
+message CreateRecurringTransactionResponse {
+    bool success = 1;
+    string error = 2;
+}
+
+message DeleteRecurringTransactionRequest {
+    int64 id = 1;
+}
+
+message DeleteRecurringTransactionResponse {
+    bool success = 1;
+    string error = 2;
+}

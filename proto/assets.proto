@@ -1,0 +1,59 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+import "google/protobuf/empty.proto";
+import "proto/model.proto";
+
+service AssetService {
+  rpc Assets(google.protobuf.Empty) returns (AssetsResponse) {}
+  rpc createAsset(CreateAssetRequest) returns (CreateAssetResponse) {}
+  rpc deleteAsset(DeleteAssetRequest) returns (DeleteAssetResponse) {}
+
+  rpc Loans(google.protobuf.Empty) returns (LoansResponse) {}
+  rpc createLoan(CreateLoanRequest) returns (CreateLoanResponse) {}
+  rpc deleteLoan(DeleteLoanRequest) returns (DeleteLoanResponse) {}
+}
+
+message AssetsResponse {
+  repeated Asset assets = 1;
+}
+
+message CreateAssetRequest {
+  Asset asset = 1;
+}
+
+message CreateAssetResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteAssetRequest {
+  int64 id = 1;
+}
+
+message DeleteAssetResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message LoansResponse {
+  repeated Loan loans = 1;
+}
+
+message CreateLoanRequest {
+  Loan loan = 1;
+}
+
+message CreateLoanResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteLoanRequest {
+  int64 id = 1;
+}
+
+message DeleteLoanResponse {
+  bool success = 1;
+  string error = 2;
+}

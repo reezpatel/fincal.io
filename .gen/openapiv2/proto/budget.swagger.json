@@ -1,0 +1,209 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/budget.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "BudgetService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "fincalCreateEnvelopeAllocationResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalCreateEnvelopeResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalCreateEnvelopeTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalDeleteEnvelopeAllocationResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalDeleteEnvelopeResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalDeleteEnvelopeTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalEnvelope": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "workspaceId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalEnvelopeAllocation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "monthNotation": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templateId": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "utilized": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "fincalEnvelopeAllocationsResponse": {
+      "type": "object",
+      "properties": {
+        "allocations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/fincalEnvelopeAllocation"
+          }
+        }
+      }
+    },
+    "fincalEnvelopeTemplate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "envelopeId": {
+          "type": "string"
+        },
+        "categoryId": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "fincalEnvelopeTemplatesResponse": {
+      "type": "object",
+      "properties": {
+        "templates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/fincalEnvelopeTemplate"
+          }
+        }
+      }
+    },
+    "fincalEnvelopesResponse": {
+      "type": "object",
+      "properties": {
+        "envelopes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/fincalEnvelope"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

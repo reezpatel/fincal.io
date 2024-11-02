@@ -1,0 +1,59 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+import "google/protobuf/empty.proto";
+import "proto/model.proto";
+
+service GoalService {
+  rpc Goals(google.protobuf.Empty) returns (GoalsResponse) {}
+  rpc createGoal(CreateGoalRequest) returns (CreateGoalResponse) {}
+  rpc deleteGoal(DeleteGoalRequest) returns (DeleteGoalResponse) {}
+
+  rpc GoalDistributions(google.protobuf.Empty) returns (GoalDistributionsResponse) {}
+  rpc createGoalDistribution(CreateGoalDistributionRequest) returns (CreateGoalDistributionResponse) {}
+  rpc deleteGoalDistribution(DeleteGoalDistributionRequest) returns (DeleteGoalDistributionResponse) {}
+}
+
+message GoalsResponse {
+  repeated Goal goals = 1;
+}
+
+message CreateGoalRequest {
+  Goal goal = 1;
+}
+
+message CreateGoalResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteGoalRequest {
+  int64 id = 1;
+}
+
+message DeleteGoalResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message GoalDistributionsResponse {
+  repeated GoalDistribution distributions = 1;
+}
+
+message CreateGoalDistributionRequest {
+  GoalDistribution distribution = 1;
+}
+
+message CreateGoalDistributionResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteGoalDistributionRequest {
+  int64 id = 1;
+}
+
+message DeleteGoalDistributionResponse {
+  bool success = 1;
+  string error = 2;
+}

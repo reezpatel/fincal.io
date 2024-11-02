@@ -1,0 +1,37 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+import "google/protobuf/empty.proto";
+import "proto/model.proto";
+import "external/validate.proto";
+
+
+service UserService {
+  rpc self(google.protobuf.Empty) returns (UserResponse) {}
+  rpc updateSelf(UpdateSelfRequest) returns (UpdateSelfResponse) {}
+  rpc updatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse) {}
+}
+
+message UserResponse {
+  User user = 1;
+}
+
+message UpdateSelfRequest {
+  string icon = 1;
+  string name = 2 [(buf.validate.field).string.min_len = 1];
+}
+
+message UpdateSelfResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message UpdatePasswordRequest {
+  string currentPassword = 1 [(buf.validate.field).string.min_len = 6];
+  string newPassword = 2 [(buf.validate.field).string.min_len = 6];
+}
+
+message UpdatePasswordResponse {
+  bool success = 1;
+  string error = 2;
+}

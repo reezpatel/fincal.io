@@ -1,0 +1,44 @@
+syntax = "proto3";
+package fincal;
+option go_package = "./;fincal";
+
+import "external/validate.proto";
+
+service AuthService {
+  rpc register (RegisterAccountRequest) returns (RegisterAccountResponse) {}
+  rpc signIn (SignInRequest) returns (SignInResponse) {}
+  rpc googleLogin (GoogleLoginRequest) returns (GoogleLoginResponse) {}
+}
+
+message RegisterAccountRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string password = 2 [(buf.validate.field).string.min_len = 6];
+  string name = 3 [(buf.validate.field).string.min_len = 1];
+}
+
+message RegisterAccountResponse {
+  bool success = 1;
+  string error = 2;
+  string token = 3;
+}
+
+message SignInRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string password = 2 [(buf.validate.field).string.min_len = 6];
+}
+
+message  SignInResponse {
+  bool success = 1;
+  string error = 2;
+  string token = 3;
+}
+
+message GoogleLoginRequest {
+  string code = 1;
+}
+
+message  GoogleLoginResponse {
+  bool success = 1;
+  string error = 2;
+  string token = 3;
+}

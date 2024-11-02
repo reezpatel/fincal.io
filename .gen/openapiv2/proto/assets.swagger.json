@@ -1,0 +1,199 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/assets.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AssetService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "fincalAsset": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "workspaceId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "originalValue": {
+          "type": "number",
+          "format": "double"
+        },
+        "currentValue": {
+          "type": "number",
+          "format": "double"
+        },
+        "acquiredAt": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalAssetsResponse": {
+      "type": "object",
+      "properties": {
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/fincalAsset"
+          }
+        }
+      }
+    },
+    "fincalCreateAssetResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalCreateLoanResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalDeleteAssetResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalDeleteLoanResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalLoan": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "workspaceId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "interestRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "termMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "loanAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "principalAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "loanBalance": {
+          "type": "number",
+          "format": "double"
+        },
+        "principalBalance": {
+          "type": "number",
+          "format": "double"
+        },
+        "monthlyInstallment": {
+          "type": "number",
+          "format": "double"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "fincalLoansResponse": {
+      "type": "object",
+      "properties": {
+        "loans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/fincalLoan"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

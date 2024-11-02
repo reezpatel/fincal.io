@@ -1,0 +1,10 @@
+type: google.api.Service
+config_version: 3
+name: Fincal Server
+title: Fincal Server
+
+usage:
+  rules:
+    # Allow unregistered calls for all methods.
+    - selector: "*"
+      allow_unregistered_calls: true
